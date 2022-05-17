@@ -1,7 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&family=Roboto&display=swap');
 
+/*--------------------------------------------Colours */
+
+.bg-color-name-title {
+    background-color:#676767 ;
+}
+
+/*--------------------------------------------Heading */
+
 header {
     margin: 0;
+}
+
+.heading {
+    margin-left: 50px;
+
 }
 
 .logo {
@@ -13,4 +26,21 @@ header {
     transition: all .5s ease;
     -moz-transition: all .5s ease;
     -webkit-transition: all .5s ease;
+}
+
+.name {
+    font-family: "Exo 2", sans-sarif;
+    font-weight: 300;
+    font-size: 46px;
+    margin-top: 50px;
+    color: #fff;
+}
+
+.title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    color: #fff;
 }
