@@ -14,6 +14,7 @@ function userInformationHTML(user) {
     <p>Follwers: ${user.followers} - Following ${user.following} <br> Repos: ${user.public_repos}</p>`
 }
 
+
 function fetchGitHubInformation(event) {
 
     var username = $('#gh-username').val();
@@ -30,11 +31,14 @@ function fetchGitHubInformation(event) {
 
 
 $.when(
-    $.getJSON(`https://api.github.com/users/${username}`)
+    $.getJSON(`https://api.github.com/users/${username}`),
+    $.getJSON(`https://api.github.com/users/${username}/repos`)
 ).then(
-    function(response) {
-        var userData = response;
+    function(firstResponse, secondResponse) {
+        var userData = firstResponse[0];
+        var repoData = secondResponse[0];
         $("#gh-user-data").html(userInformationHTML(userData));
+        $("#gh-repo-data").html(repoInformationHTML(repoData));
     },
     function(errorResponse) {
         if (errorResponse.status === 404) {
