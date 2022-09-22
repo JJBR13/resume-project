@@ -14,9 +14,30 @@ function userInformationHTML(user) {
     <p>Follwers: ${user.followers} - Following ${user.following} <br> Repos: ${user.public_repos}</p>`
 }
 
+function repoInformationHTML(repos) {
+    if (repos.length == 0) {
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+
+    var listItemsHTML = repos.map(function(repo) {
+        return `<li>
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`;
+    });
+
+    return `<div class="clearfix repo-list">
+                <p>
+                    <strong>Repo List:</strong>
+                </p>
+                <ul>
+                    ${listItemsHTML.join("\n")}
+                </ul>
+            </div>`;
+}
 
 function fetchGitHubInformation(event) {
-
+    $("#gh-user-data").html("");
+    $("#gh-repo-data").html("");
     var username = $('#gh-username').val();
     if (!username) {
         $('#gh-user-data').html('<h2>Please enter a GitHub username</h2>');
@@ -51,3 +72,5 @@ $.when(
         }
     });
 }
+
+$(document).ready(fetchGitHubInformation);
