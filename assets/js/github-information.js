@@ -65,6 +65,9 @@ $.when(
         if (errorResponse.status === 404) {
             $("#gh-user-data").html(
                 `<h2>No info found for user ${username}</h2>`);
+        } else if(errorResponse.status === 403) {
+            var resetTime = new Date(errorResponse.getResponseheader('X-RateLimit-Reset')*1000);
+            4("#gh-user-data").html(`<h4>Too many requests, please wait until ${restTime.toLocaleTimeString()}</h4>`)
         } else {
             console.log(errorResponse);
             $("#gh-user-data").html(
@@ -73,4 +76,4 @@ $.when(
     });
 }
 
-$(document).ready(fetchGitHubInformation);
+$(document).ready(fetchGitHubInformation)
